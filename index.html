@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="pokeapp__wrapper">
+      <header class="pokeapp__header">
+        <div class="pokeapp__header__wrapper">
+          <p class="pokeapp__header__wrapper__text--main">Pokemon</p>
+          <p class="pokeapp__header__wrapper__text--secondary">catalog</p>
+        </div>
+        <div class="pokeapp__header__wrapper">
+          <input
+            type="text"
+            class="pokeapp__header__element__input"
+            placeholder="Search.."
+            id="searchInput"
+          />
+        </div>
+      </header>
+      <div class="pokeapp__cards__wrapper" id="cardsWrapper"></div>
+      <button class="pokeapp__button--load" id="loadMoreBtn">Load more</button>
+    </div>
+    <script src="./js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.pokeapp__wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.pokeapp__header {
+  display: flex;
+  padding: 30px 10px;
+  justify-content: space-between;
+}
+
+.pokeapp__header__wrapper__text--main {
+  display: inline-block;
+  font-size: 2em;
+  color: #e19720
+}
+
+.pokeapp__header__wrapper__text--secondary {
+  display: inline-block;
+  font-size: 2em;
+  color: #811e09
+}
+
+.pokeapp__header__element__input {
+  padding: 5px 15px;
+  font-size: 1.5em;
+  border: none;
+  border-bottom: 2px solid orangered;
+}
+
+.pokeapp__header__element__input:focus {
+  border-bottom: 2px solid #fad61d;
+}
+
+
+.pokeapp__cards__wrapper {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 25px;
+  justify-items: center;
+  margin-bottom: 50px;
+}
+
+.card__wrapper {
+  /* margin: 10px; */
+}
+
+.pokeapp__card__pokemon__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pokeapp__card__pokemon__name {
+  padding-bottom: 5px;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.pokeapp__card__pokemon__number {
+  padding-bottom: 5px;
+  font-size: 1.2em;
+}
+
+.pokeapp__button--load {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #e19720;
+  color: white;
+  border: #e19720 5px solid;
+  font-size: 2em;
+  cursor: pointer;
+  transition: color .5s, background-color .5s;
+  margin-bottom: 50px;
+
+}
+
+.pokeapp__button--load:hover {
+  background-color: white;
+  color: #e19720;
+}
+
+.loading {
+  display: block;
+  margin: 0 auto;
+  background-color: transparent;
+  border: none;
+  width: 80px;
+  height: 80px;
+}
+
+.loading:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #e19720;
+  border-color: #e19720 transparent #e19720 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

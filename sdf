@@ -1,0 +1,101 @@
+  const search = document.getElementById("searchInput");
+const load = document.getElementById("loadMoreBtn");
+const cardsWrapper = document.getElementById("cardsWrapper");
+let pageNumber = 1;
+let perPage = 4;
+let data = [];
+const elements = [];
+
+load.addEventListener("click", async (e) => {
+  e.preventDefault();
+  setData();
+});
+
+search.addEventListener("input", (e) => {
+  console.log(e.target.value);
+  console.log(e);
+  cardsWrapper.innerHTML = "";
+  const tempElements = elements.filter((element) => {
+    // if (element.pokemonName.match(e.target.value)) return element;
+    return element;
+  });
+  console.log(tempElements);
+  tempElements.forEach((data) => {
+    const elements = [...data.childNodes];
+    const element = document.createElement("div");
+    console.log(elements);
+    element.appendChild(elements[0]);
+    element.appendChild(elements[1]);
+    element.appendChild(elements[2]);
+    element.appendChild(elements[3]);
+    element.appendChild(elements[4]);
+
+    // console.log(element);
+    cardsWrapper.appendChild(element);
+  });
+  cardsWrapper;
+});
+
+async function getData() {
+  try {
+    //loader
+    const response = await fetch(
+      `https://api.pokemontcg.io/v1/cards?page=${pageNumber}&pageSize=${perPage}`
+    );
+    pageNumber += 1;
+    const { cards } = await response.json();
+    //loaded
+    return cards;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function setData() {
+  data = await getData();
+  data.forEach((data) => {
+    const element = createElement(data);
+    elements.push(element);
+    cardsWrapper.appendChild(element);
+  });
+}
+
+function insertData() {
+  setData();
+}
+
+function createElement({ name, imageUrl, supertype, subtype, rarity, number }) {
+  const element = document.createElement("div");
+  const pokemonHeader = document.createElement("div");
+  pokemonHeader.setAttribute("class", "pokeapp__card__pokemon__header");
+  const pokemonName = document.createElement("p");
+  pokemonName.innerText = name;
+  pokemonName.setAttribute("class", "pokeapp__card__pokemon__name");
+  const pokemonNumber = document.createElement("p");
+  pokemonNumber.innerText = `Nr: ${number}`;
+  pokemonNumber.setAttribute("class", "pokeapp__card__pokemon__number");
+  pokemonHeader.appendChild(pokemonName);
+  pokemonHeader.appendChild(pokemonNumber);
+  const pokemonImage = document.createElement("img");
+  pokemonImage.setAttribute("src", imageUrl);
+  pokemonImage.setAttribute("class", "pokeapp__card__pokemon__image");
+  const pokemonSupertype = document.createElement("p");
+  pokemonSupertype.innerHTML = `<b>Supertype:</b> ${supertype}`;
+  pokemonSupertype.setAttribute("class", "pokeapp__card__pokemon__supertype");
+  const pokemonSubtype = document.createElement("p");
+  pokemonSubtype.innerHTML = `<b>Subtype:</b> ${subtype}`;
+  pokemonSubtype.setAttribute("class", "pokeapp__card__pokemon__subtype");
+  const pokemonRarity = document.createElement("p");
+  pokemonRarity.innerHTML = `<b>Rarity:</b> ${rarity}`;
+  pokemonRarity.setAttribute("class", "pokeapp__card__pokemon__rarity");
+  element.setAttribute("class", "card__wrapper");
+  element.appendChild(pokemonHeader);
+  element.appendChild(pokemonImage);
+  element.appendChild(pokemonSupertype);
+  element.appendChild(pokemonSubtype);
+  element.appendChild(pokemonRarity);
+  element.pokemonName = name;
+  return element;
+}
+
+insertData();
